@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { TomatoButton } from './Buttons';
+import { Box } from 'grommet';
+import Header from './Header';
 
 class PathFinder extends Component {
   render() {
     return (
-      <div className="App">
-        <TomatoButton>Tomato</TomatoButton>
-      </div>
+      <Box>
+        <Header />
+      </Box>
     );
   }
 }

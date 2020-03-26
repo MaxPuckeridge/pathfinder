@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "license": "ISC",
   "dependencies": {
+    "grommet": "^2.11.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.12.20",
