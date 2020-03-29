@@ -10,7 +10,7 @@ import {
 import App from '../components/App';
 
 const initialState: AppState = {
-  appStep: AppStep.SetupGrid,
+  appStep: AppStep.SetGridSize,
   gridSize: {
     width: 4,
     height: 4,
