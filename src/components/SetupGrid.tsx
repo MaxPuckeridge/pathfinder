@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { AppState, AppStep } from '../redux/types';
+import { AppState, GridConfig } from '../redux/types';
+import { Box, Heading } from 'grommet';
+import Grid from './Grid';
 
-interface PropTypes {
-  appStep: AppStep;
-}
+interface PropTypes {}
 
 class SetupGrid extends Component<PropTypes> {
   render() {
-    return <div>hi!</div>;
+    return (
+      <Box direction="column">
+        <Heading level="3">Configure grid</Heading>
+        <Grid />
+      </Box>
+    );
   }
 }
 
-const mapStateToProps = (state: AppState): PropTypes => ({
-  appStep: state.appStep,
-});
+const mapStateToProps = (state: AppState): PropTypes => ({});
 
 export default connect(mapStateToProps)(SetupGrid);
