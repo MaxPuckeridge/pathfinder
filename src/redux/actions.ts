@@ -2,14 +2,15 @@ import {
   SET_GRID_SIZE,
   SetGridAction,
   GridSize,
-  GridConfig,
-  SetupGridAction,
-  SETUP_GRID,
+  ToggleGridItemAction,
+  TOGGLE_GRID_ITEM,
   GridPosition,
   SET_START_POSITION,
   SET_TARGET_POSITION,
   SetStartPositionAction,
   SetTargetPositionAction,
+  FinaliseGridAction,
+  FINALISE_GRID,
 } from './types';
 
 export function setGridSize(gridSize: GridSize): SetGridAction {
@@ -19,10 +20,18 @@ export function setGridSize(gridSize: GridSize): SetGridAction {
   };
 }
 
-export function setupGrid(gridConfig: GridConfig): SetupGridAction {
+export function toggleGridItemAction(
+  gridPosition: GridPosition
+): ToggleGridItemAction {
   return {
-    type: SETUP_GRID,
-    gridConfig: gridConfig,
+    type: TOGGLE_GRID_ITEM,
+    gridPosition: gridPosition,
+  };
+}
+
+export function finaliseGridAction(): FinaliseGridAction {
+  return {
+    type: FINALISE_GRID,
   };
 }
 

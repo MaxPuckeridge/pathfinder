@@ -18,7 +18,7 @@ export interface GridPosition {
   y: number;
 }
 
-export type GridConfig = number;
+export type GridConfig = number[];
 
 export interface AppState {
   appStep: AppStep;
@@ -37,11 +37,17 @@ export interface SetGridAction {
   gridSize: GridSize;
 }
 
-export const SETUP_GRID = 'SETUP_GRID';
+export const TOGGLE_GRID_ITEM = 'TOGGLE_GRID_ITEM';
 
-export interface SetupGridAction {
-  type: typeof SETUP_GRID;
-  gridConfig: GridConfig;
+export interface ToggleGridItemAction {
+  type: typeof TOGGLE_GRID_ITEM;
+  gridPosition: GridPosition;
+}
+
+export const FINALISE_GRID = 'FINALISE_GRID';
+
+export interface FinaliseGridAction {
+  type: typeof FINALISE_GRID;
 }
 
 export const SET_START_POSITION = 'SET_START_POSITION';
@@ -60,6 +66,7 @@ export interface SetTargetPositionAction {
 
 export type ActionTypes =
   | SetGridAction
-  | SetupGridAction
+  | ToggleGridItemAction
+  | FinaliseGridAction
   | SetStartPositionAction
   | SetTargetPositionAction;

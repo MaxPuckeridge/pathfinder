@@ -25,20 +25,26 @@ class Grid extends Component<PropTypes> {
 
     const body: Array<JSX.Element> = [];
 
-    for (let j = 0; j < height; j++) {
+    for (let y = 0; y < height; y++) {
       const row: Array<JSX.Element> = [];
 
-      for (let i = 0; i < width; i++) {
-        const itemKey: string = `item-${i},${j}`;
+      for (let x = 0; x < width; x++) {
+        const itemKey: string = `item-${x},${y}`;
+
+        const n = x + y * width;
+        const configIndex = Math.floor(n / 32);
+        const bitIndex = n % 32;
+        const bit = gridConfig[configIndex] || 0;
+        const isSolid: boolean = ((bit >> bitIndex) & 1) == 1;
 
         row.push(
           <TableCell key={itemKey}>
             <GridItem
-              solid
+              solid={isSolid}
               onClick={() =>
                 onClickItem({
-                  x: i,
-                  y: j,
+                  x,
+                  y,
                 })
               }
             />
@@ -46,7 +52,7 @@ class Grid extends Component<PropTypes> {
         );
       }
 
-      const rowKey = `row-${j}`;
+      const rowKey = `row-${y}`;
 
       body.push(<TableRow key={rowKey}>{row}</TableRow>);
     }

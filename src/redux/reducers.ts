@@ -3,9 +3,10 @@ import {
   AppStep,
   ActionTypes,
   SET_GRID_SIZE,
-  SETUP_GRID,
+  TOGGLE_GRID_ITEM,
   SET_START_POSITION,
   SET_TARGET_POSITION,
+  FINALISE_GRID,
 } from './types';
 import App from '../components/App';
 
@@ -15,7 +16,7 @@ const initialState: AppState = {
     width: 4,
     height: 4,
   },
-  gridConfig: 0,
+  gridConfig: [],
 };
 
 export default function (state = initialState, action: ActionTypes) {
@@ -24,14 +25,36 @@ export default function (state = initialState, action: ActionTypes) {
       return {
         ...state,
         gridSize: action.gridSize,
-        gridConfig: 0,
+        gridConfig: [],
         appStep: AppStep.SetupGrid,
       };
 
-    case SETUP_GRID:
+    case TOGGLE_GRID_ITEM:
+      const {
+        gridConfig,
+        gridSize: { width },
+      } = state;
+
+      const {
+        gridPosition: { x, y },
+      } = action;
+
+      const n = x + width * y;
+      const configIndex = Math.floor(n / 32);
+      const bitIndex = n % 32;
+
+      const updatedConfig = [...gridConfig];
+      const bit = (updatedConfig[configIndex] || 0) ^ (1 << bitIndex);
+      updatedConfig[configIndex] = bit;
+
       return {
         ...state,
-        gridConfig: action.gridConfig,
+        gridConfig: updatedConfig,
+      };
+
+    case FINALISE_GRID:
+      return {
+        ...state,
         startPosition: null,
         targetPosition: null,
         appStep: AppStep.ChoosePathBegin,

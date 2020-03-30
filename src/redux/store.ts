@@ -4,5 +4,5 @@ import { devToolsEnhancer } from 'redux-devtools-extension';
 
 export default createStore(
   rootReducer,
-  devToolsEnhancer()
+  devToolsEnhancer({})
 );
