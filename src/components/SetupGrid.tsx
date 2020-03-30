@@ -1,21 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { GridPosition } from '../redux/types';
-import { Box, Heading } from 'grommet';
+import { Box, Heading, Button } from 'grommet';
 import Grid from './Grid';
-import { toggleGridItemAction } from '../redux/actions';
+import { toggleGridItemAction, finaliseGridAction } from '../redux/actions';
 
 interface PropTypes {
   onClickItem: (gridPosition: GridPosition) => void;
+  onClickNext: () => void;
 }
 
 class SetupGrid extends Component<PropTypes> {
   render() {
-    const { onClickItem } = this.props;
+    const { onClickItem, onClickNext } = this.props;
     return (
       <Box direction="column">
         <Heading level="3">Configure grid</Heading>
         <Grid onClickItem={onClickItem} />
+        <Box direction="row-reverse">
+          <Box align="center" pad="medium">
+            <Button label="Next" primary  onClick={onClickNext}/>
+          </Box>
+        </Box>
       </Box>
     );
   }
@@ -26,6 +32,8 @@ const dispatchProps = (dispatch): PropTypes => {
     onClickItem: (gridPosition: GridPosition) => {
       dispatch(toggleGridItemAction(gridPosition));
     },
+
+    onClickNext: () => dispatch(finaliseGridAction()),
   };
 };
 

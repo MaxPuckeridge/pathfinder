@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { AppState, AppStep, GridSize } from '../redux/types';
+import { AppState, GridSize } from '../redux/types';
 import { Box, Heading, TextInput, Button, Form, FormField } from 'grommet';
 import { setGridSize } from '../redux/actions';
 
