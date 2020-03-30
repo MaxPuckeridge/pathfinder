@@ -11,7 +11,7 @@ class Header extends Component {
       >
         <Box width="auto">
           <GHeader>
-            <Heading>PathFinder</Heading>
+            <Heading level="1">PathFinder</Heading>
           </GHeader>
         </Box>
       </Box>
